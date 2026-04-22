@@ -1166,21 +1166,10 @@ Topologie Kyoto Sanjo Store｜19:30 打烊</div>
 
 </div><!-- end pages-wrapper -->
 
-<div id="dbg" style="position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.8);color:#0f0;font-size:11px;padding:6px 10px;z-index:9999;font-family:monospace;"></div>
-
 <script>
-  const pages = ['flight','day1','day2','day3','day4','day5','tickets'];
+  const pages = ['flight','day1','day2','day3','day4','day5','day6','tickets'];
   let currentIndex = 0;
   const wrapper = document.getElementById('pagesWrapper');
-  const dbg = document.getElementById('dbg');
-
-  function updateDebug() {
-    const w = wrapper;
-    dbg.textContent = `wrapper: ${w.clientWidth}×${w.clientHeight} | scrollLeft:${Math.round(w.scrollLeft)} | body overflow:${getComputedStyle(document.body).overflow} | html overflow:${getComputedStyle(document.documentElement).overflow}`;
-  }
-  updateDebug();
-  setTimeout(updateDebug, 500);
-  wrapper.addEventListener('scroll', updateDebug, {passive:true});
 
   function showPage(id) {
     const idx = pages.indexOf(id);
@@ -1195,7 +1184,6 @@ Topologie Kyoto Sanjo Store｜19:30 打烊</div>
     document.querySelectorAll('.tab-btn')[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   }
 
-  // Sync tab when user swipes natively
   let scrollTimer;
   wrapper.addEventListener('scroll', () => {
     clearTimeout(scrollTimer);
@@ -1204,7 +1192,6 @@ Topologie Kyoto Sanjo Store｜19:30 打烊</div>
       if (idx !== currentIndex) {
         currentIndex = idx;
         syncTab(idx);
-        // scroll active page to top
         document.getElementById('page-' + pages[idx]).scrollTop = 0;
       }
     }, 80);
