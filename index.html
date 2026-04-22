@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -8,224 +7,123 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-
-:root {
-–ink: #1a1410;
-–paper: #faf7f2;
-–cream: #f2ece0;
-–red: #c94040;
-–gold: #b8862a;
-–muted: #7a6e62;
-–border: #d6cdbf;
-–lunch-bg: #fff8ef;
-–lunch-border: #e8a84c;
-–dinner-bg: #f2eef8;
-–dinner-border: #8b6bbf;
-–hotel-bg: #eef4f0;
-–hotel-border: #4a8c5c;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html, body { height: 100%; overflow: hidden; }
-
-body {
-background: var(–paper);
-color: var(–ink);
-font-family: ‘Noto Sans TC’, sans-serif;
-font-weight: 300;
-line-height: 1.7;
-display: flex;
-flex-direction: column;
-}
-
-/* HEADER */
-.site-header {
-flex: 0 0 auto;
-background: var(–ink);
-color: var(–paper);
-padding: 48px 24px 40px;
-text-align: center;
-position: relative;
-overflow: hidden;
-}
-.site-header::before {
-content: ‘’;
-position: absolute; inset: 0;
-background: repeating-linear-gradient(
-45deg, transparent, transparent 40px,
-rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 80px
-);
-}
-.trip-title {
-font-family: ‘DM Serif Display’, serif;
-font-size: clamp(2rem, 6vw, 3.5rem);
-letter-spacing: 0.04em;
-position: relative;
-}
-.trip-sub {
-font-size: 0.85rem;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: rgba(247,243,236,0.55);
-margin-top: 8px;
-position: relative;
-}
-.trip-dates {
-display: inline-block;
-margin-top: 16px;
-background: var(–red);
-color: #fff;
-font-size: 0.8rem;
-letter-spacing: 0.15em;
-padding: 6px 20px;
-border-radius: 2px;
-position: relative;
-}
-
-/* TAB BAR */
-.tab-bar {
-flex: 0 0 auto;
-background: var(–cream);
-border-bottom: 2px solid var(–border);
-display: flex;
-overflow-x: auto;
-scrollbar-width: none;
-}
-.tab-bar::-webkit-scrollbar { display: none; }
-.tab-btn {
-flex: 0 0 auto;
-padding: 14px 20px;
-border: none;
-background: none;
-cursor: pointer;
-font-family: ‘Noto Sans TC’, sans-serif;
-font-size: 0.8rem;
-color: var(–muted);
-letter-spacing: 0.08em;
-white-space: nowrap;
-border-bottom: 3px solid transparent;
-margin-bottom: -2px;
-transition: all 0.2s;
-}
-.tab-btn:hover { color: var(–ink); }
-.tab-btn.active { color: var(–ink); border-bottom-color: var(–red); font-weight: 500; }
-
-/* PAGES WRAPPER — the swipeable container */
-.pages-wrapper {
-flex: 1 1 auto;
-min-height: 0;
-display: flex;
-width: 100%;
-overflow-x: scroll;
-overflow-y: hidden;
-scroll-snap-type: x mandatory;
--webkit-overflow-scrolling: touch;
-scrollbar-width: none;
-}
-.pages-wrapper::-webkit-scrollbar { display: none; }
-
-/* EACH PAGE */
-.page {
-flex: 0 0 100vw;
-width: 100vw;
-min-width: 100vw;
-height: 100%;
-overflow-y: auto;
-overflow-x: hidden;
--webkit-overflow-scrolling: touch;
-scroll-snap-align: start;
-scroll-snap-stop: always;
-padding-bottom: 60px;
-}
-
-.page-inner { max-width: 860px; margin: 0 auto; padding: 0 20px; }
-
-/* DAY HEADER */
-.day-header { padding: 40px 0 24px; border-bottom: 1px solid var(–border); margin-bottom: 32px; }
-.day-label { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(–muted); }
-.day-title { font-family: ‘DM Serif Display’, serif; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.2; margin: 6px 0 4px; }
-.day-highlight { font-size: 0.82rem; color: var(–muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.highlight-tag { background: var(–cream); border: 1px solid var(–border); border-radius: 2px; padding: 2px 10px; font-size: 0.75rem; }
-
-/* HOTEL CARD */
-.hotel-card { background: var(–hotel-bg); border: 1px solid var(–hotel-border); border-radius: 4px; padding: 16px 20px; margin-bottom: 32px; display: flex; align-items: center; gap: 14px; }
-.hotel-icon { font-size: 1.4rem; }
-.hotel-info { flex: 1; }
-.hotel-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(–hotel-border); margin-bottom: 2px; }
-.hotel-name { font-size: 1rem; font-weight: 500; color: var(–ink); }
-.hotel-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; font-size: 0.75rem; color: var(–hotel-border); text-decoration: none; border-bottom: 1px dashed var(–hotel-border); transition: opacity 0.2s; }
-.hotel-link:hover { opacity: 0.7; }
-
-/* TIMELINE */
-.timeline { position: relative; }
-.timeline::before { content: ‘’; position: absolute; left: 66px; top: 0; bottom: 0; width: 1px; background: var(–border); }
-.tl-item { display: flex; gap: 0; position: relative; }
-.tl-time { flex: 0 0 66px; font-size: 0.68rem; color: var(–muted); letter-spacing: 0.05em; padding-top: 18px; text-align: right; padding-right: 16px; line-height: 1.3; }
-.tl-dot { flex: 0 0 0; position: relative; width: 0; }
-.tl-dot::before { content: ‘’; position: absolute; left: -5px; top: 22px; width: 9px; height: 9px; border-radius: 50%; background: var(–border); border: 2px solid var(–paper); }
-.tl-item.has-event .tl-dot::before { background: var(–ink); }
-.tl-item.is-meal .tl-dot::before { background: var(–red); }
-.tl-content { flex: 1; padding: 14px 0 14px 24px; border-bottom: 1px dashed transparent; }
-.tl-item.has-event .tl-content { border-bottom-color: var(–border); padding-bottom: 20px; margin-bottom: 4px; }
-.event-title { font-size: 0.95rem; font-weight: 500; color: var(–ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.map-link { font-size: 0.7rem; color: var(–red); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-.map-link:hover { border-bottom-color: var(–red); }
-.event-note { margin-top: 6px; font-size: 0.78rem; color: var(–muted); line-height: 1.6; white-space: pre-wrap; }
-.event-note a { color: var(–gold); text-decoration: none; border-bottom: 1px dashed var(–gold); }
-.event-note a:hover { opacity: 0.8; }
-
-/* TRANSPORT */
-.transport-row { display: flex; align-items: flex-start; gap: 8px; background: rgba(0,0,0,0.03); border-left: 3px solid var(–border); padding: 8px 12px; margin-top: 8px; border-radius: 0 3px 3px 0; }
-.transport-icon { font-size: 0.9rem; margin-top: 1px; }
-.transport-text { font-size: 0.76rem; color: var(–muted); line-height: 1.5; white-space: pre-wrap; }
-.transport-text a { color: var(–gold); text-decoration: none; border-bottom: 1px dashed var(–gold); }
-
-/* MEAL CARDS */
-.meal-card { border-radius: 4px; padding: 12px 16px; margin-top: 8px; border: 1px solid; }
-.meal-card.lunch { background: var(–lunch-bg); border-color: var(–lunch-border); }
-.meal-card.dinner { background: var(–dinner-bg); border-color: var(–dinner-border); }
-.meal-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
-.meal-card.lunch .meal-label { color: var(–lunch-border); }
-.meal-card.dinner .meal-label { color: var(–dinner-border); }
-.meal-content { font-size: 0.82rem; color: var(–ink); }
-.meal-empty { font-size: 0.78rem; color: var(–muted); font-style: italic; }
-.meal-budget { margin-top: 4px; font-size: 0.73rem; color: var(–muted); }
-
-/* NOTES */
-.notes-box { background: var(–cream); border: 1px solid var(–border); border-radius: 4px; padding: 16px 20px; margin-top: 32px; }
-.notes-box h3 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(–muted); margin-bottom: 10px; }
-.notes-box p { font-size: 0.8rem; color: var(–ink); line-height: 1.7; }
-
-/* FLIGHT PAGE */
-.section-title { font-family: ‘DM Serif Display’, serif; font-size: 1.4rem; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(–border); }
-.flight-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 32px; }
-.flight-table th { background: var(–ink); color: var(–paper); padding: 10px 14px; text-align: left; font-weight: 400; letter-spacing: 0.08em; font-size: 0.72rem; }
-.flight-table td { padding: 10px 14px; border-bottom: 1px solid var(–border); vertical-align: top; line-height: 1.5; }
-.flight-table tr:hover td { background: var(–cream); }
-.airline-badge { display: inline-block; background: var(–cream); border: 1px solid var(–border); border-radius: 2px; padding: 2px 8px; font-size: 0.72rem; }
-
-/* TICKETS */
-.tickets-section { margin-bottom: 36px; }
-.tickets-section-title { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(–muted); padding: 0 0 8px; border-bottom: 1px solid var(–border); margin-bottom: 16px; }
-.ticket-item { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(–border); border-radius: 4px; margin-bottom: 10px; background: #fff; transition: box-shadow 0.2s; }
-.ticket-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-.ticket-info { flex: 1; }
-.ticket-name { font-size: 0.88rem; font-weight: 500; }
-.ticket-price { font-size: 0.82rem; color: var(–gold); font-weight: 500; text-align: right; white-space: nowrap; }
-.ticket-link-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; color: var(–red); text-decoration: none; border: 1px solid rgba(201,64,64,0.3); border-radius: 2px; padding: 3px 8px; transition: all 0.2s; white-space: nowrap; flex: 0 0 auto; }
-.ticket-link-btn:hover { background: var(–red); color: #fff; }
-
-/* PERSON CHIPS */
-.person-row { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
-.person-chip { font-size: 0.7rem; padding: 3px 10px; border: 1px solid var(–border); border-radius: 12px; background: var(–cream); color: var(–muted); cursor: pointer; transition: all 0.2s; }
-.person-chip.checked { background: #4a8c5c; border-color: #4a8c5c; color: #fff; }
-
-@media (max-width: 600px) {
-.timeline::before { left: 56px; }
-.tl-time { flex: 0 0 56px; font-size: 0.62rem; }
-}
-
+  :root {
+    --ink: #1a1410;
+    --paper: #faf7f2;
+    --cream: #f2ece0;
+    --red: #c94040;
+    --gold: #b8862a;
+    --muted: #7a6e62;
+    --border: #d6cdbf;
+    --lunch-bg: #fff8ef;
+    --lunch-border: #e8a84c;
+    --dinner-bg: #f2eef8;
+    --dinner-border: #8b6bbf;
+    --hotel-bg: #eef4f0;
+    --hotel-border: #4a8c5c;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+  }
+  .site-header {
+    flex: 0 0 auto;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 80px);
+  }
+  .trip-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: 0.04em; position: relative; }
+  .trip-sub { font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,243,236,0.55); margin-top: 8px; position: relative; }
+  .trip-dates { display: inline-block; margin-top: 16px; background: var(--red); color: #fff; font-size: 0.8rem; letter-spacing: 0.15em; padding: 6px 20px; border-radius: 2px; position: relative; }
+  .tab-bar { flex: 0 0 auto; background: var(--cream); border-bottom: 2px solid var(--border); display: flex; overflow-x: auto; scrollbar-width: none; }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn { flex: 0 0 auto; padding: 14px 20px; border: none; background: none; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.08em; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--red); font-weight: 500; }
+  .pages-wrapper { flex: 1 1 auto; min-height: 0; display: flex; width: 100%; overflow-x: scroll; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .pages-wrapper::-webkit-scrollbar { display: none; }
+  .page { flex: 0 0 100vw; width: 100vw; min-width: 100vw; height: 100%; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scroll-snap-align: start; scroll-snap-stop: always; padding-bottom: 60px; }
+  .page-inner { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  .day-header { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  .day-label { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
+  .day-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.2; margin: 6px 0 4px; }
+  .day-highlight { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .highlight-tag { background: var(--cream); border: 1px solid var(--border); border-radius: 2px; padding: 2px 10px; font-size: 0.75rem; }
+  .hotel-card { background: var(--hotel-bg); border: 1px solid var(--hotel-border); border-radius: 4px; padding: 16px 20px; margin-bottom: 32px; display: flex; align-items: center; gap: 14px; }
+  .hotel-icon { font-size: 1.4rem; }
+  .hotel-info { flex: 1; }
+  .hotel-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hotel-border); margin-bottom: 2px; }
+  .hotel-name { font-size: 1rem; font-weight: 500; color: var(--ink); }
+  .hotel-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; font-size: 0.75rem; color: var(--hotel-border); text-decoration: none; border-bottom: 1px dashed var(--hotel-border); transition: opacity 0.2s; }
+  .hotel-link:hover { opacity: 0.7; }
+  .timeline { position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 66px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .tl-item { display: flex; gap: 0; position: relative; }
+  .tl-time { flex: 0 0 66px; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 18px; text-align: right; padding-right: 16px; line-height: 1.3; }
+  .tl-dot { flex: 0 0 0; position: relative; width: 0; }
+  .tl-dot::before { content: ''; position: absolute; left: -5px; top: 22px; width: 9px; height: 9px; border-radius: 50%; background: var(--border); border: 2px solid var(--paper); }
+  .tl-item.has-event .tl-dot::before { background: var(--ink); }
+  .tl-item.is-meal .tl-dot::before { background: var(--red); }
+  .tl-content { flex: 1; padding: 14px 0 14px 24px; border-bottom: 1px dashed transparent; }
+  .tl-item.has-event .tl-content { border-bottom-color: var(--border); padding-bottom: 20px; margin-bottom: 4px; }
+  .event-title { font-size: 0.95rem; font-weight: 500; color: var(--ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .map-link { font-size: 0.7rem; color: var(--red); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .map-link:hover { border-bottom-color: var(--red); }
+  .event-note { margin-top: 6px; font-size: 0.78rem; color: var(--muted); line-height: 1.6; white-space: pre-wrap; }
+  .event-note a { color: var(--gold); text-decoration: none; border-bottom: 1px dashed var(--gold); }
+  .transport-row { display: flex; align-items: flex-start; gap: 8px; background: rgba(0,0,0,0.03); border-left: 3px solid var(--border); padding: 8px 12px; margin-top: 8px; border-radius: 0 3px 3px 0; }
+  .transport-icon { font-size: 0.9rem; margin-top: 1px; }
+  .transport-text { font-size: 0.76rem; color: var(--muted); line-height: 1.5; white-space: pre-wrap; }
+  .transport-text a { color: var(--gold); text-decoration: none; border-bottom: 1px dashed var(--gold); }
+  .meal-card { border-radius: 4px; padding: 12px 16px; margin-top: 8px; border: 1px solid; }
+  .meal-card.lunch { background: var(--lunch-bg); border-color: var(--lunch-border); }
+  .meal-card.dinner { background: var(--dinner-bg); border-color: var(--dinner-border); }
+  .meal-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+  .meal-card.lunch .meal-label { color: var(--lunch-border); }
+  .meal-card.dinner .meal-label { color: var(--dinner-border); }
+  .meal-content { font-size: 0.82rem; color: var(--ink); }
+  .meal-empty { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+  .meal-budget { margin-top: 4px; font-size: 0.73rem; color: var(--muted); }
+  .notes-box { background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 16px 20px; margin-top: 32px; }
+  .notes-box h3 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .notes-box p { font-size: 0.8rem; color: var(--ink); line-height: 1.7; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .flight-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 32px; }
+  .flight-table th { background: var(--ink); color: var(--paper); padding: 10px 14px; text-align: left; font-weight: 400; letter-spacing: 0.08em; font-size: 0.72rem; }
+  .flight-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .flight-table tr:hover td { background: var(--cream); }
+  .airline-badge { display: inline-block; background: var(--cream); border: 1px solid var(--border); border-radius: 2px; padding: 2px 8px; font-size: 0.72rem; }
+  .tickets-section { margin-bottom: 36px; }
+  .tickets-section-title { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); padding: 0 0 8px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+  .ticket-item { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; background: #fff; transition: box-shadow 0.2s; }
+  .ticket-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .ticket-info { flex: 1; }
+  .ticket-name { font-size: 0.88rem; font-weight: 500; }
+  .ticket-price { font-size: 0.82rem; color: var(--gold); font-weight: 500; text-align: right; white-space: nowrap; }
+  .ticket-link-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; color: var(--red); text-decoration: none; border: 1px solid rgba(201,64,64,0.3); border-radius: 2px; padding: 3px 8px; transition: all 0.2s; white-space: nowrap; flex: 0 0 auto; }
+  .ticket-link-btn:hover { background: var(--red); color: #fff; }
+  .person-row { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .person-chip { font-size: 0.7rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 12px; background: var(--cream); color: var(--muted); cursor: pointer; transition: all 0.2s; }
+  .person-chip.checked { background: #4a8c5c; border-color: #4a8c5c; color: #fff; }
+  @media (max-width: 600px) {
+    .timeline::before { left: 56px; }
+    .tl-time { flex: 0 0 56px; font-size: 0.62rem; }
+  }
 </style>
 </head>
 <body>
@@ -246,973 +144,198 @@ padding-bottom: 60px;
 </nav>
 <div class="pages-wrapper" id="pagesWrapper">
 
-<!-- ═══════════════════════════════════════════════ -->
-
-<!-- FLIGHT PAGE -->
-
-<!-- ═══════════════════════════════════════════════ -->
-
 <div class="page" id="page-flight">
   <div class="page-inner">
     <div class="day-header">
       <div class="day-label">Flight Information · 機票資訊</div>
-      <div class="day-title">去程 & 回程航班</div>
+      <div class="day-title">去程 &amp; 回程航班</div>
     </div>
-
-```
-<div class="section-title">✈ 去程航班 — 5/14</div>
-<table class="flight-table">
-  <thead>
-    <tr><th>人員</th><th>出發</th><th>航空</th><th>抵達</th><th>行李</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>許芷菱</td>
-      <td>小港 KHH<br><strong>07:00</strong></td>
-      <td><span class="airline-badge">台灣虎航</span></td>
-      <td>關西 KIX<br><strong>10:55</strong></td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>賴亞奇</td>
-      <td>小港 KHH<br><strong>07:00</strong></td>
-      <td><span class="airline-badge">台灣虎航</span></td>
-      <td>關西 KIX<br><strong>10:55</strong></td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>黃鉦文</td>
-      <td>桃園 TPE<br><strong>07:45</strong></td>
-      <td><span class="airline-badge">泰國越捷 VZ566</span></td>
-      <td>關西 KIX<br><strong>11:25</strong></td>
-      <td>手提 7kg / 托運 20kg</td>
-    </tr>
-    <tr>
-      <td>蔡承浩</td>
-      <td>桃園 TPE<br><strong>07:45</strong></td>
-      <td><span class="airline-badge">泰國越捷 VZ566</span></td>
-      <td>關西 KIX<br><strong>11:25</strong></td>
-      <td>手提 7kg / 托運 20kg</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="section-title">✈ 回程航班 — 5/19</div>
-<table class="flight-table">
-  <thead>
-    <tr><th>人員</th><th>出發</th><th>航空</th><th>抵達</th><th>行李</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>許芷菱</td>
-      <td>關西 KIX<br><strong>11:15</strong></td>
-      <td><span class="airline-badge">台灣虎航</span></td>
-      <td>小港 KHH<br><strong>13:40</strong></td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>賴亞奇</td>
-      <td>關西 KIX<br><strong>11:15</strong></td>
-      <td><span class="airline-badge">台灣虎航</span></td>
-      <td>小港 KHH<br><strong>13:40</strong></td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>黃鉦文</td>
-      <td>關西 KIX<br><strong>11:45</strong></td>
-      <td><span class="airline-badge">台灣虎航 IT211</span></td>
-      <td>桃園 TPE<br><strong>13:45</strong></td>
-      <td>手提 10kg / 托運 20kg</td>
-    </tr>
-    <tr>
-      <td>蔡承浩</td>
-      <td>關西 KIX<br><strong>11:45</strong></td>
-      <td><span class="airline-badge">台灣虎航 IT211</span></td>
-      <td>桃園 TPE<br><strong>13:45</strong></td>
-      <td>手提 10kg / 托運 20kg</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="notes-box">
-  <h3>📋 入境提醒</h3>
-  <p>入境前請準備好 <a href="https://www.vjw.digital.go.jp/main/" target="_blank" style="color:var(--gold);border-bottom:1px dashed var(--gold);">Visit Japan Web</a>（預先填寫海關資料）。<br>
-  KIX 到達後，關西集合後搭乘 Haruka 前往京都。</p>
-</div>
-```
-
+    <div class="section-title">✈ 去程航班 — 5/14</div>
+    <table class="flight-table">
+      <thead><tr><th>人員</th><th>出發</th><th>航空</th><th>抵達</th><th>行李</th></tr></thead>
+      <tbody>
+        <tr><td>許芷菱</td><td>小港 KHH<br><strong>07:00</strong></td><td><span class="airline-badge">台灣虎航</span></td><td>關西 KIX<br><strong>10:55</strong></td><td>—</td></tr>
+        <tr><td>賴亞奇</td><td>小港 KHH<br><strong>07:00</strong></td><td><span class="airline-badge">台灣虎航</span></td><td>關西 KIX<br><strong>10:55</strong></td><td>—</td></tr>
+        <tr><td>黃鉦文</td><td>桃園 TPE<br><strong>07:45</strong></td><td><span class="airline-badge">泰國越捷 VZ566</span></td><td>關西 KIX<br><strong>11:25</strong></td><td>手提 7kg / 托運 20kg</td></tr>
+        <tr><td>蔡承浩</td><td>桃園 TPE<br><strong>07:45</strong></td><td><span class="airline-badge">泰國越捷 VZ566</span></td><td>關西 KIX<br><strong>11:25</strong></td><td>手提 7kg / 托運 20kg</td></tr>
+      </tbody>
+    </table>
+    <div class="section-title">✈ 回程航班 — 5/19</div>
+    <table class="flight-table">
+      <thead><tr><th>人員</th><th>出發</th><th>航空</th><th>抵達</th><th>行李</th></tr></thead>
+      <tbody>
+        <tr><td>許芷菱</td><td>關西 KIX<br><strong>11:15</strong></td><td><span class="airline-badge">台灣虎航</span></td><td>小港 KHH<br><strong>13:40</strong></td><td>—</td></tr>
+        <tr><td>賴亞奇</td><td>關西 KIX<br><strong>11:15</strong></td><td><span class="airline-badge">台灣虎航</span></td><td>小港 KHH<br><strong>13:40</strong></td><td>—</td></tr>
+        <tr><td>黃鉦文</td><td>關西 KIX<br><strong>11:45</strong></td><td><span class="airline-badge">台灣虎航 IT211</span></td><td>桃園 TPE<br><strong>13:45</strong></td><td>手提 10kg / 托運 20kg</td></tr>
+        <tr><td>蔡承浩</td><td>關西 KIX<br><strong>11:45</strong></td><td><span class="airline-badge">台灣虎航 IT211</span></td><td>桃園 TPE<br><strong>13:45</strong></td><td>手提 10kg / 托運 20kg</td></tr>
+      </tbody>
+    </table>
+    <div class="notes-box">
+      <h3>📋 入境提醒</h3>
+      <p>入境前請準備好 <a href="https://www.vjw.digital.go.jp/main/" target="_blank" style="color:var(--gold);border-bottom:1px dashed var(--gold);">Visit Japan Web</a>（預先填寫海關資料）。<br>KIX 到達後搭乘 Haruka 前往京都。</p>
+    </div>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<!-- DAY 1 京都 -->
-
-<!-- ═══════════════════════════════════════════════ -->
 
 <div class="page" id="page-day1">
   <div class="page-inner">
     <div class="day-header">
       <div class="day-label">Day 1 · 2026 / 05 / 14 · 週四</div>
       <div class="day-title">京都 初抵</div>
-      <div class="day-highlight">
-        <span class="highlight-tag">🎨 TeamLab</span>
-        <span class="highlight-tag">🏮 錦市場</span>
+      <div class="day-highlight"><span class="highlight-tag">🎨 TeamLab</span><span class="highlight-tag">🏮 錦市場</span></div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-icon">🏨</div>
+      <div class="hotel-info">
+        <div class="hotel-label">今晚住宿</div>
+        <div class="hotel-name">京都 Raina &amp; Jelly</div>
+        <a class="hotel-link" href="https://maps.app.goo.gl/gqSJaNntx3jhRgKV8" target="_blank">📍 Google Maps</a>
       </div>
     </div>
-
-```
-<!-- Hotel -->
-<div class="hotel-card">
-  <div class="hotel-icon">🏨</div>
-  <div class="hotel-info">
-    <div class="hotel-label">今晚住宿</div>
-    <div class="hotel-name">京都 Raina &amp; Jelly</div>
-    <a class="hotel-link" href="https://maps.app.goo.gl/gqSJaNntx3jhRgKV8" target="_blank">📍 Google Maps</a>
-  </div>
-</div>
-
-<div class="timeline">
-
-  <div class="tl-item has-event">
-    <div class="tl-time">12:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🛬 關西機場集合</div>
-      <div class="transport-row">
-        <div class="transport-icon">🚄</div>
-        <div class="transport-text">Haruka Line 關西機場 → 京都站<br>
-```
-
-<a href="https://www.colatour.com.tw/C10T_Ticket/C10T02_Feature.aspx?ItemNo=11536" target="_blank">JR關西周遊券四日</a>，可劃 Haruka 位置<br>
-每小時 14 分 / 44 分各有一班｜14:34 或 15:04 到達京都</div>
-</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event">
-    <div class="tl-time">15:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🏠 Check in — 京都 Raina &amp; Jelly
-        <a class="map-link" href="https://maps.app.goo.gl/8XR1o3P64nLZ2cev8" target="_blank">📍 地圖</a>
+    <div class="timeline">
+      <div class="tl-item has-event">
+        <div class="tl-time">12:00</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="event-title">🛬 關西機場集合</div>
+          <div class="transport-row"><div class="transport-icon">🚄</div><div class="transport-text">Haruka Line 關西機場 → 京都站<br><a href="https://www.colatour.com.tw/C10T_Ticket/C10T02_Feature.aspx?ItemNo=11536" target="_blank">JR關西周遊券四日</a>，每小時 14/44 分各一班｜14:34 或 15:04 到京都</div></div>
+        </div>
       </div>
-      <div class="transport-row">
-        <div class="transport-icon">🚃</div>
-        <div class="transport-text">JR京都站 🔄 山陰本線 ➡️ 丹波口站</div>
+      <div class="tl-item has-event">
+        <div class="tl-time">15:00</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="event-title">🏠 Check in — 京都 Raina &amp; Jelly <a class="map-link" href="https://maps.app.goo.gl/8XR1o3P64nLZ2cev8" target="_blank">📍 地圖</a></div>
+          <div class="transport-row"><div class="transport-icon">🚃</div><div class="transport-text">JR京都站 🔄 山陰本線 ➡️ 丹波口站</div></div>
+        </div>
+      </div>
+      <div class="tl-item has-event">
+        <div class="tl-time">16:00</div><div class="tl-dot"></div>
+        <div class="tl-content"><div class="event-title">🏮 錦市場</div></div>
+      </div>
+      <div class="tl-item has-event is-meal">
+        <div class="tl-time">18:00</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="meal-card dinner"><div class="meal-label">🌙 晚餐</div><div class="meal-content">TeamLab 附近餐廳</div><div class="meal-budget">人均預算約 1,000 台幣</div></div>
+        </div>
+      </div>
+      <div class="tl-item has-event">
+        <div class="tl-time">19:00</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="event-title">🎨 TeamLab Kyoto <a class="map-link" href="https://maps.app.goo.gl/SoTfVriJ8MozjLHS6" target="_blank">📍 地圖</a></div>
+          <div class="event-note">票券：<a href="https://www.teamlab.art/zh-hant/e/kyoto/" target="_blank">日本官方售票網</a></div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">16:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🏮 錦市場
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event is-meal">
-    <div class="tl-time">18:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="meal-card dinner">
-        <div class="meal-label">🌙 晚餐</div>
-        <div class="meal-content">TeamLab 附近餐廳</div>
-        <div class="meal-budget">人均預算約 1,000 台幣</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">19:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🎨 TeamLab Kyoto
-        <a class="map-link" href="https://maps.app.goo.gl/SoTfVriJ8MozjLHS6" target="_blank">📍 地圖</a>
-      </div>
-      <div class="event-note">票券：<a href="https://www.teamlab.art/zh-hant/e/kyoto/" target="_blank">日本官方售票網</a></div>
-    </div>
-  </div>
-
-</div>
-
-<div class="notes-box">
-  <h3>🗒 備註</h3>
-  <p>京都逛街可在烏丸站（寶中）、四條、五條附近，或花見小路、二三年阪（清水寺方向，住在四條河源町的話搭計程車很快）</p>
-</div>
-```
-
+    <div class="notes-box"><h3>🗒 備註</h3><p>京都逛街可在烏丸站（寶中）、四條、五條附近，或花見小路、二三年阪方向。</p></div>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<!-- DAY 2 京都 -->
-
-<!-- ═══════════════════════════════════════════════ -->
 
 <div class="page" id="page-day2">
   <div class="page-inner">
     <div class="day-header">
       <div class="day-label">Day 2 · 2026 / 05 / 15 · 週五</div>
       <div class="day-title">清水寺 · 宇治</div>
-      <div class="day-highlight">
-        <span class="highlight-tag">⛩ 清水寺</span>
-        <span class="highlight-tag">🍵 宇治平等院</span>
-        <span class="highlight-tag">🦀 晚餐吃到飽</span>
+      <div class="day-highlight"><span class="highlight-tag">⛩ 清水寺</span><span class="highlight-tag">🍵 宇治平等院</span><span class="highlight-tag">🦀 晚餐吃到飽</span></div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-icon">🏨</div>
+      <div class="hotel-info">
+        <div class="hotel-label">今晚住宿</div>
+        <div class="hotel-name">京都 Raina &amp; Jelly</div>
+        <a class="hotel-link" href="https://maps.app.goo.gl/gqSJaNntx3jhRgKV8" target="_blank">📍 Google Maps</a>
       </div>
     </div>
-
-```
-<div class="hotel-card">
-  <div class="hotel-icon">🏨</div>
-  <div class="hotel-info">
-    <div class="hotel-label">今晚住宿</div>
-    <div class="hotel-name">京都 Raina &amp; Jelly</div>
-    <a class="hotel-link" href="https://maps.app.goo.gl/gqSJaNntx3jhRgKV8" target="_blank">📍 Google Maps</a>
-  </div>
-</div>
-
-<div class="timeline">
-
-  <div class="tl-item has-event">
-    <div class="tl-time">08:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🍳 早餐</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">09:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="transport-row">
-        <div class="transport-icon">🚕</div>
-        <div class="transport-text">搭計程車前往清水寺，約 15 分鐘車程</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">10:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        ⛩ 清水寺 · 二年坂 · 三年坂
-        <a class="map-link" href="https://maps.app.goo.gl/XPqAJV2s9Jn57WHX6" target="_blank">📍 地圖</a>
-      </div>
-      <div class="event-note">門票 500 日圓</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event is-meal">
-    <div class="tl-time">12:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="meal-card lunch">
-        <div class="meal-label">☀ 午餐</div>
-        <div class="meal-content meal-empty">清水寺附近，待補充</div>
-        <div class="meal-budget">人均預算約 500 台幣</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">13:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🌸 宇治 · 平等院
-        <a class="map-link" href="https://maps.app.goo.gl/uDmPSFR22h6k8UTm9" target="_blank">📍 地圖</a>
-      </div>
-      <div class="transport-row">
-        <div class="transport-icon">🚃</div>
-        <div class="transport-text">關西電鐵清水五條 ➡️ 東福寺站 🔄 JR奈良線 ➡️ 宇治站</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">14:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🏛 平等院鳳凰堂
-        <a class="map-link" href="https://maps.app.goo.gl/WMYNo4QBdqw6RFNV7" target="_blank">📍 地圖</a>
-      </div>
-      <div class="event-note">門票 700 日圓｜鳳凰堂開放至 16:00（限制入館人數）
-```
-
-<a href="https://www.byodoin.or.jp/ch2/guide/" target="_blank">官方網站</a></div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event">
-    <div class="tl-time">15:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🌿 宇治其他景點</div>
-      <div class="event-note">• 宇治上神社（日本現存最古老神社）
-```
-
-• 中村藤吉（建議到宇治後先抽號碼牌）
-• 橘島、塔之島</div>
-<div class="event-note" style="margin-top:8px;">
-<a href="https://mimigo.tw/wp-content/uploads/pixnet/a8ab4e3c16ac39718e54278aa4bb3843.jpg" target="_blank">🖼 任天堂博物館地圖參考</a>
-</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event">
-    <div class="tl-time">18:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="transport-row">
-        <div class="transport-icon">🚃</div>
-        <div class="transport-text">JR東福寺 🔄 京阪電鐵京阪本線 ➡️ 三條站
-```
-
-Topologie Kyoto Sanjo Store｜19:30 打烊</div>
-</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event is-meal">
-    <div class="tl-time">19:30</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="meal-card dinner">
-        <div class="meal-label">🌙 晚餐</div>
-        <div class="meal-content">
-          壽喜燒松葉蟹・帝王蟹吃到飽 和牛與蟹 三條河原町店
-          <a class="map-link" href="https://maps.app.goo.gl/YUgh91DX3iKYAY8NA" target="_blank" style="font-size:0.75rem;">📍 地圖</a>
+    <div class="timeline">
+      <div class="tl-item has-event"><div class="tl-time">08:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🍳 早餐</div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-content"><div class="transport-row"><div class="transport-icon">🚕</div><div class="transport-text">搭計程車前往清水寺，約 15 分鐘</div></div></div></div>
+      <div class="tl-item has-event">
+        <div class="tl-time">10:00</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="event-title">⛩ 清水寺 · 二年坂 · 三年坂 <a class="map-link" href="https://maps.app.goo.gl/XPqAJV2s9Jn57WHX6" target="_blank">📍 地圖</a></div>
+          <div class="event-note">門票 500 日圓</div>
         </div>
-        <div class="meal-budget">16,000 日圓（約 3,500 台幣，不含稅）</div>
+      </div>
+      <div class="tl-item has-event is-meal"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-content"><div class="meal-card lunch"><div class="meal-label">☀ 午餐</div><div class="meal-content meal-empty">清水寺附近，待補充</div><div class="meal-budget">人均預算約 500 台幣</div></div></div></div>
+      <div class="tl-item has-event">
+        <div class="tl-time">13:00</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="event-title">🌸 宇治 · 平等院 <a class="map-link" href="https://maps.app.goo.gl/uDmPSFR22h6k8UTm9" target="_blank">📍 地圖</a></div>
+          <div class="transport-row"><div class="transport-icon">🚃</div><div class="transport-text">關西電鐵清水五條 ➡️ 東福寺 🔄 JR奈良線 ➡️ 宇治站</div></div>
+        </div>
+      </div>
+      <div class="tl-item has-event">
+        <div class="tl-time">14:00</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="event-title">🏛 平等院鳳凰堂 <a class="map-link" href="https://maps.app.goo.gl/WMYNo4QBdqw6RFNV7" target="_blank">📍 地圖</a></div>
+          <div class="event-note">門票 700 日圓｜鳳凰堂開放至 16:00（限制入館人數）&#10;<a href="https://www.byodoin.or.jp/ch2/guide/" target="_blank">官方網站</a></div>
+        </div>
+      </div>
+      <div class="tl-item has-event">
+        <div class="tl-time">15:00</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="event-title">🌿 宇治其他景點</div>
+          <div class="event-note">• 宇治上神社（日本現存最古老神社）&#10;• 中村藤吉（建議先抽號碼牌）&#10;• 橘島、塔之島</div>
+        </div>
+      </div>
+      <div class="tl-item has-event is-meal">
+        <div class="tl-time">19:30</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="meal-card dinner"><div class="meal-label">🌙 晚餐</div><div class="meal-content">壽喜燒松葉蟹・帝王蟹吃到飽 三條河原町店 <a class="map-link" href="https://maps.app.goo.gl/YUgh91DX3iKYAY8NA" target="_blank">📍</a></div><div class="meal-budget">16,000 日圓（約 3,500 台幣，不含稅）</div></div>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
-```
-
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<!-- DAY 3 京都→大阪 -->
-
-<!-- ═══════════════════════════════════════════════ -->
 
 <div class="page" id="page-day3">
   <div class="page-inner">
     <div class="day-header">
       <div class="day-label">Day 3 · 2026 / 05 / 16 · 週六</div>
       <div class="day-title">京都 → 大阪</div>
-      <div class="day-highlight">
-        <span class="highlight-tag">🧳 移房大阪</span>
-        <span class="highlight-tag">🌆 梅田逛街</span>
-        <span class="highlight-tag">🏮 道頓堀・心齋橋</span>
+      <div class="day-highlight"><span class="highlight-tag">🧳 移房大阪</span><span class="highlight-tag">🌆 梅田</span><span class="highlight-tag">🏮 道頓堀・心齋橋</span></div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-icon">🏨</div>
+      <div class="hotel-info">
+        <div class="hotel-label">今晚住宿（移宿大阪）</div>
+        <div class="hotel-name">大阪比偲奇格蘭比亞酒店</div>
+        <a class="hotel-link" href="https://maps.app.goo.gl/S2KRFMoqrcu75xsT9" target="_blank">📍 Google Maps</a>
       </div>
     </div>
-
-```
-<div class="hotel-card">
-  <div class="hotel-icon">🏨</div>
-  <div class="hotel-info">
-    <div class="hotel-label">今晚住宿（移宿大阪）</div>
-    <div class="hotel-name">大阪比偲奇格蘭比亞酒店</div>
-    <a class="hotel-link" href="https://maps.app.goo.gl/S2KRFMoqrcu75xsT9" target="_blank">📍 Google Maps</a>
-  </div>
-</div>
-
-<div class="timeline">
-
-  <div class="tl-item has-event">
-    <div class="tl-time">09:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🧳 寄行李 / Check Out</div>
-      <div class="event-note">寄行李最早時段為 09:00–09:30</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">10:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🚄 車程 — 京都 → 大阪
+    <div class="timeline">
+      <div class="tl-item has-event"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🧳 寄行李 / Check Out</div><div class="event-note">寄行李最早時段為 09:00–09:30</div></div></div>
+      <div class="tl-item has-event">
+        <div class="tl-time">10:00</div><div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="event-title">🚄 車程 — 京都 → 大阪</div>
+          <div class="transport-row"><div class="transport-icon">🚄</div><div class="transport-text">JR京都站 🔄 <a href="https://www.westjr.co.jp/global/en/timetable/pdf/haruka_timetable_2024.pdf" target="_blank">Haruka</a> ➡️ 大阪站｜約 30–50 分鐘</div></div>
+          <div class="transport-row"><div class="transport-icon">📍</div><div class="transport-text"><a href="https://maps.app.goo.gl/J3GEFuLf27vu3UZ69" target="_blank">大阪車站地圖</a></div></div>
+        </div>
       </div>
-      <div class="transport-row">
-        <div class="transport-icon">🚄</div>
-        <div class="transport-text">JR京都站 🔄 <a href="https://www.westjr.co.jp/global/en/timetable/pdf/haruka_timetable_2024.pdf" target="_blank">Haruka</a> ➡️ 大阪站
-```
-
-約 30–50 分鐘（含轉車）｜每半小時一班</div>
-</div>
-<div class="transport-row">
-<div class="transport-icon">📍</div>
-<div class="transport-text"><a href="https://maps.app.goo.gl/J3GEFuLf27vu3UZ69" target="_blank">大阪車站地圖</a></div>
-</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event is-meal">
-    <div class="tl-time">11:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="meal-card lunch">
-        <div class="meal-label">☀ 午餐</div>
-        <div class="meal-content meal-empty">待補充</div>
-        <div class="meal-budget">人均預算 500 台幣內</div>
-      </div>
+      <div class="tl-item has-event is-meal"><div class="tl-time">11:00</div><div class="tl-dot"></div><div class="tl-content"><div class="meal-card lunch"><div class="meal-label">☀ 午餐</div><div class="meal-content meal-empty">待補充</div><div class="meal-budget">人均預算 500 台幣內</div></div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🛍 梅田逛街</div><div class="event-note">請各自做功課，可分開逛</div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">16:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🚶 車程 → 難波 <a class="map-link" href="https://maps.app.goo.gl/g1DLBFGbePk1fkC77" target="_blank">📍 地圖</a></div><div class="event-note">16:30 集合（地點待定）｜預計 17:00 到難波站</div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">17:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">⛩ 八阪神社 <a class="map-link" href="https://maps.app.goo.gl/J3GEFuLf27vu3UZ69" target="_blank">📍 地圖</a></div><div class="event-note">17:00 後只能在外面拍攝獅子頭</div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">18:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🏮 道頓堀 · 心齋橋</div><div class="event-note">固力果跑跑人、摩天輪唐吉訶德、章魚燒&#10;心齋橋：藥妝、百貨（大丸百貨有寶中到晚八）</div></div></div>
+      <div class="tl-item has-event is-meal"><div class="tl-time">20:00</div><div class="tl-dot"></div><div class="tl-content"><div class="meal-card dinner"><div class="meal-label">🌙 晚餐</div><div class="meal-content meal-empty">心齋橋附近居酒屋，找不到可回道頓堀</div></div></div></div>
     </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">12:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🛍 梅田逛街</div>
-      <div class="event-note">請各自做功課，可分開逛</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">16:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🚶 車程 → 難波
-        <a class="map-link" href="https://maps.app.goo.gl/g1DLBFGbePk1fkC77" target="_blank">📍 難波地圖</a>
-      </div>
-      <div class="event-note">16:30 集合（地點待定）｜預計 17:00 到達難波站</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">17:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        ⛩ 八阪神社
-        <a class="map-link" href="https://maps.app.goo.gl/J3GEFuLf27vu3UZ69" target="_blank">📍 地圖</a>
-      </div>
-      <div class="event-note">17:00 後只能在外面拍攝獅子頭</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">18:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🏮 道頓堀 · 心齋橋</div>
-      <div class="event-note">固力果跑跑人、摩天輪唐吉訶德、章魚燒、各種小店
-```
-
-心齋橋：日本典型商店街、藥妝、百貨（大丸百貨有寶中到晚八）</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event is-meal">
-    <div class="tl-time">20:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="meal-card dinner">
-        <div class="meal-label">🌙 晚餐</div>
-        <div class="meal-content meal-empty">心齋橋附近居酒屋（可喝酒），找不到可回到道頓堀</div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="notes-box">
-  <h3>🗒 備註</h3>
-  <p>大阪逛街：難波站附近道頓堀、往北心齋橋；梅田站附近有很多百貨</p>
-</div>
-```
-
+    <div class="notes-box"><h3>🗒 備註</h3><p>大阪逛街：難波附近道頓堀、往北心齋橋；梅田站附近有很多百貨。</p></div>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<!-- DAY 4 大阪 → 姬路 → 神戶 -->
-
-<!-- ═══════════════════════════════════════════════ -->
 
 <div class="page" id="page-day4">
   <div class="page-inner">
     <div class="day-header">
       <div class="day-label">Day 4 · 2026 / 05 / 17 · 週日</div>
       <div class="day-title">姬路城 · 神戶</div>
-      <div class="day-highlight">
-        <span class="highlight-tag">🏯 姬路城</span>
-        <span class="highlight-tag">⚓ 神戶閒晃</span>
+      <div class="day-highlight"><span class="highlight-tag">🏯 姬路城</span><span class="highlight-tag">⚓ 神戶閒晃</span></div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-icon">🏨</div>
+      <div class="hotel-info">
+        <div class="hotel-label">今晚住宿</div>
+        <div class="hotel-name">大阪比偲奇格蘭比亞酒店</div>
+        <a class="hotel-link" href="https://maps.app.goo.gl/S2KRFMoqrcu75xsT9" target="_blank">📍 Google Maps</a>
       </div>
     </div>
-
-```
-<div class="hotel-card">
-  <div class="hotel-icon">🏨</div>
-  <div class="hotel-info">
-    <div class="hotel-label">今晚住宿</div>
-    <div class="hotel-name">大阪比偲奇格蘭比亞酒店</div>
-    <a class="hotel-link" href="https://maps.app.goo.gl/S2KRFMoqrcu75xsT9" target="_blank">📍 Google Maps</a>
-  </div>
-</div>
-
-<div class="timeline">
-
-  <div class="tl-item has-event">
-    <div class="tl-time">07:30</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🌅 早餐從簡，出發</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">08:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🚄 車程 → 姬路</div>
-      <div class="transport-row">
-        <div class="transport-icon">🚃</div>
-        <div class="transport-text">JR山陽本線 下行 新快速（米原方向） 經姬路</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">09:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🏯 姬路城
-        <a class="map-link" href="https://maps.app.goo.gl/pVvqRhse6WrLTxH87" target="_blank">📍 地圖</a>
-      </div>
-      <div class="event-note">開園時間：09:00｜門票：2,500 日圓
-```
-
-官方預計遊覽時間：1.5–2 小時
-<a href="https://www.himejicastle.jp/cn_han/" target="_blank">姬路城官網</a></div>
-<div class="transport-row">
-<div class="transport-icon">🚌</div>
-<div class="transport-text">從姫路站北口搭乘神姫公車，在”大手門前”下車，步行 5 分鐘
-或從 JR 姫路站、山陽姫路站步行 20 分鐘</div>
-</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event is-meal">
-    <div class="tl-time">13:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="meal-card lunch">
-        <div class="meal-label">☀ 午餐</div>
-        <div class="meal-content meal-empty">待補充</div>
-        <div class="meal-budget">人均預算 500 台幣內</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">12:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🚄 車程 → 神戶三宮
-        <a class="map-link" href="https://maps.app.goo.gl/pUYceo5S6JZz4Buz6" target="_blank">📍 三宮地圖</a>
-      </div>
-      <div class="transport-row">
-        <div class="transport-icon">🚃</div>
-        <div class="transport-text">JR東海道・山陽本線 ➡️ 三宮站</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">14:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">⚓ 神戶閒晃</div>
-      <div class="event-note">🗺 <a href="https://www.feel-kobe.jp/tw/brochures" target="_blank">神戶官方觀光手冊（繁體中文）</a></div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event is-meal">
-    <div class="tl-time">18:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="meal-card dinner">
-        <div class="meal-label">🌙 晚餐</div>
-        <div class="meal-content meal-empty">神戶晚餐，待補充</div>
-      </div>
-    </div>
-  </div>
-
-</div>
-```
-
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<!-- DAY 5 大阪 環球影城 -->
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<div class="page" id="page-day5">
-  <div class="page-inner">
-    <div class="day-header">
-      <div class="day-label">Day 5 · 2026 / 05 / 18 · 週一</div>
-      <div class="day-title">環球影城 USJ</div>
-      <div class="day-highlight">
-        <span class="highlight-tag">🎢 任天堂</span>
-        <span class="highlight-tag">⚡ 咚奇剛</span>
-        <span class="highlight-tag">🧙 禁忌之旅</span>
-        <span class="highlight-tag">🦈 大白鯊</span>
-      </div>
-    </div>
-
-```
-<div class="hotel-card">
-  <div class="hotel-icon">🏨</div>
-  <div class="hotel-info">
-    <div class="hotel-label">今晚住宿</div>
-    <div class="hotel-name">大阪比偲奇格蘭比亞酒店</div>
-    <a class="hotel-link" href="https://maps.app.goo.gl/S2KRFMoqrcu75xsT9" target="_blank">📍 Google Maps</a>
-  </div>
-</div>
-
-<div class="timeline">
-
-  <div class="tl-item has-event">
-    <div class="tl-time">08:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">
-        🚃 出發 → 環球影城
-        <a class="map-link" href="https://maps.app.goo.gl/vCCbHKmb647rAtqY6" target="_blank">📍 JR環球站</a>
-      </div>
-      <div class="event-note">下載 <a href="https://apps.apple.com/tw/app/%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AB-%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%AA-%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3-%E5%85%AC%E5%BC%8F%E3%82%A2%E3%83%97%E3%83%AA/id532097000" target="_blank">USJ 官方 App</a> 以便查詢等待時間</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">09:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🎢 環球影城開園</div>
-      <div class="event-note">入園後先抽 任天堂世界 整理券（限量）</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">10:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">⭐ 必玩設施</div>
-      <div class="event-note">• 咚奇剛過山車
-```
-
-• 禁忌之旅
-• 好萊塢乘車遊
-• 太空幻想列車</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event">
-    <div class="tl-time">13:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">⭐⭐ 第二必玩</div>
-      <div class="event-note">• 庫巴
-```
-
-• 鷹馬
-• 大白鯊</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event">
-    <div class="tl-time">14:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">⭐⭐⭐ 有時間可玩</div>
-      <div class="event-note">• 小小兵
-```
-
-• 耀西</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event is-meal">
-    <div class="tl-time">晚餐前</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="meal-card dinner">
-        <div class="meal-label">🌙 晚餐</div>
-        <div class="meal-content meal-empty">閉園前離開，附近用餐，待補充</div>
-      </div>
-      <div class="event-note" style="margin-top:6px;">閉園時間約 20:00</div>
-    </div>
-  </div>
-
-</div>
-```
-
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<!-- DAY 6 回程 -->
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<div class="page" id="page-day6">
-  <div class="page-inner">
-    <div class="day-header">
-      <div class="day-label">Day 6 · 2026 / 05 / 19 · 週二</div>
-      <div class="day-title">回程</div>
-      <div class="day-highlight">
-        <span class="highlight-tag">✈ 返回台灣</span>
-      </div>
-    </div>
-
-```
-<div class="timeline">
-
-  <div class="tl-item has-event">
-    <div class="tl-time">07:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">🚐 前往關西機場</div>
-      <div class="transport-row">
-        <div class="transport-icon">🚌</div>
-        <div class="transport-text">07:00–07:30 上車
-```
-
-<a href="https://tw.innn.com/new_tw_activity_pc.html" target="_blank">innn 機場接駁服務</a>（預約制）</div>
-</div>
-</div>
-</div>
-
-```
-  <div class="tl-item has-event">
-    <div class="tl-time">11:15</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">✈ 許芷菱 / 賴亞奇 起飛</div>
-      <div class="event-note">台灣虎航｜關西 KIX → 小港 KHH｜13:40 抵達</div>
-    </div>
-  </div>
-
-  <div class="tl-item has-event">
-    <div class="tl-time">11:45</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="event-title">✈ 黃鉦文 / 蔡承浩 起飛</div>
-      <div class="event-note">台灣虎航 IT211｜關西 KIX → 桃園 TPE｜13:45 抵達</div>
-    </div>
-  </div>
-
-</div>
-
-<div class="notes-box">
-  <h3>🧳 回程注意</h3>
-  <p>行李寄送服務由許負責統籌（<a href="https://book.luggagent.com/booking/" target="_blank" style="color:var(--gold);border-bottom:1px dashed var(--gold);">Luggagent</a>），每人兩件，請提前確認取件時間與地點。</p>
-</div>
-```
-
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<!-- TICKETS PAGE -->
-
-<!-- ═══════════════════════════════════════════════ -->
-
-<div class="page" id="page-tickets">
-  <div class="page-inner">
-    <div class="day-header">
-      <div class="day-label">Tickets &amp; Services · 票券與服務</div>
-      <div class="day-title">票券購買 · 服務預約</div>
-      <div class="day-highlight" style="margin-top:8px; font-size:0.78rem; color:var(--muted);">點擊名字標記個人完成 ✅</div>
-    </div>
-
-```
-<!-- 票券 -->
-<div class="tickets-section">
-  <div class="tickets-section-title">🎫 票券相關</div>
-
-  <div class="ticket-item">
-    <div class="ticket-info">
-      <div class="ticket-name">關西周遊券四日</div>
-      <div class="person-row" style="margin-top:8px;">
-        <span class="person-chip" onclick="togglePerson(this)" data-key="jr-黃">黃鉦文</span>
-        <span class="person-chip" onclick="togglePerson(this)" data-key="jr-蔡">蔡承浩</span>
-        <span class="person-chip" onclick="togglePerson(this)" data-key="jr-許">許芷菱</span>
-        <span class="person-chip" onclick="togglePerson(this)" data-key="jr-賴">賴亞奇</span>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
-      <div class="ticket-price">NT$ 1,298</div>
-      <a class="ticket-link-btn" href="https://www.colatour.com.tw/C10T_Ticket/C10T02_Feature.aspx?ItemNo=4755" target="_blank">🔗 購買</a>
-    </div>
-  </div>
-
-  <div class="ticket-item">
-    <div class="ticket-info">
-      <div class="ticket-name">環球影城門票</div>
-      <div class="person-row" style="margin-top:8px;">
-        <span class="person-chip" onclick="togglePerson(this)" data-key="usj-黃">黃鉦文</span>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
-      <div class="ticket-price">NT$ 1,800</div>
-      <a class="ticket-link-btn" href="https://www.colatour.com.tw/C10T_Ticket/C10T02_Feature.aspx?ItemNo=12039" target="_blank">🔗 購買</a>
-    </div>
-  </div>
-
-  <div class="ticket-item">
-    <div class="ticket-info">
-      <div class="ticket-name">TeamLab Kyoto</div>
-      <div class="person-row" style="margin-top:8px;">
-        <span class="person-chip" onclick="togglePerson(this)" data-key="tl-黃">黃鉦文</span>
-        <span class="person-chip" onclick="togglePerson(this)" data-key="tl-蔡">蔡承浩</span>
-        <span class="person-chip" onclick="togglePerson(this)" data-key="tl-許">許芷菱</span>
-        <span class="person-chip" onclick="togglePerson(this)" data-key="tl-賴">賴亞奇</span>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
-      <div class="ticket-price">NT$ 948</div>
-      <a class="ticket-link-btn" href="https://www.klook.com/zh-TW/activity/167098-teamlab-kyoto/" target="_blank">🔗 購買</a>
-    </div>
-  </div>
-</div>
-
-<!-- 服務 -->
-<div class="tickets-section">
-  <div class="tickets-section-title">🛎 服務相關</div>
-
-  <div class="ticket-item">
-    <div class="ticket-info">
-      <div class="ticket-name">行李寄送（每人兩件）</div>
-      <div class="person-row" style="margin-top:8px;">
-        <span class="person-chip" onclick="togglePerson(this)" data-key="lug-許">許芷菱</span>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
-      <div class="ticket-price">總 US$144</div>
-      <a class="ticket-link-btn" href="https://book.luggagent.com/booking/" target="_blank">🔗 預約</a>
-    </div>
-  </div>
-
-  <div class="ticket-item">
-    <div class="ticket-info">
-      <div class="ticket-name">innn 機場接送（大阪→KIX）</div>
-      <div class="person-row" style="margin-top:8px;">
-        <span class="person-chip" onclick="togglePerson(this)" data-key="innn-黃">黃鉦文</span>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
-      <div class="ticket-price">NT$ 700</div>
-      <a class="ticket-link-btn" href="https://h5.innn.com/pc/home?type=02&params1=INNN&params2=TW" target="_blank">🔗 預約</a>
-    </div>
-  </div>
-
-  <div class="ticket-item">
-    <div class="ticket-info">
-      <div class="ticket-name">eSIM 上網卡</div>
-      <div class="person-row" style="margin-top:8px;">
-        <span class="person-chip" onclick="togglePerson(this)" data-key="esim-黃">黃鉦文</span>
-        <span class="person-chip" onclick="togglePerson(this)" data-key="esim-蔡">蔡承浩</span>
-        <span class="person-chip" onclick="togglePerson(this)" data-key="esim-許">許芷菱</span>
-        <span class="person-chip" onclick="togglePerson(this)" data-key="esim-賴">賴亞奇</span>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
-      <div class="ticket-price">自行處理</div>
-    </div>
-  </div>
-</div>
-```
-
-  </div>
-</div>
-
-</div><!-- end pages-wrapper -->
-
-<script>
-  const pages = ['flight','day1','day2','day3','day4','day5','day6','tickets'];
-  let currentIndex = 0;
-  const wrapper = document.getElementById('pagesWrapper');
-
-  function showPage(id) {
-    const idx = pages.indexOf(id);
-    if (idx < 0) return;
-    currentIndex = idx;
-    wrapper.scrollTo({ left: wrapper.clientWidth * idx, behavior: 'smooth' });
-    syncTab(idx);
-  }
-
-  function syncTab(idx) {
-    document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
-    document.querySelectorAll('.tab-btn')[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  }
-
-  let scrollTimer;
-  wrapper.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => {
-      const idx = Math.round(wrapper.scrollLeft / wrapper.clientWidth);
-      if (idx !== currentIndex) {
-        currentIndex = idx;
-        syncTab(idx);
-        document.getElementById('page-' + pages[idx]).scrollTop = 0;
-      }
-    }, 80);
-  }, { passive: true });
-
-  function togglePerson(el) {
-    el.classList.toggle('checked');
-    const state = {};
-    document.querySelectorAll('.person-chip[data-key]').forEach(c => {
-      state[c.dataset.key] = c.classList.contains('checked');
-    });
-    try { localStorage.setItem('personState2', JSON.stringify(state)); } catch(e){}
-  }
-
-  try {
-    const ps = JSON.parse(localStorage.getItem('personState2') || '{}');
-    document.querySelectorAll('.person-chip[data-key]').forEach(c => {
-      if(ps[c.dataset.key]) c.classList.add('checked');
-    });
-  } catch(e){}
-</script>
-
-</body>
-</html>
+    <div class="timeline">
+      <div class="tl-item has-event"><div class="tl-time">07:30</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🌅 早餐從簡，出發</div></div></div>
