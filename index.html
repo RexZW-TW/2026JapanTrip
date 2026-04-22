@@ -8,45 +8,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1410;
-    --paper: #faf7f2;
-    --cream: #f2ece0;
-    --red: #c94040;
-    --gold: #b8862a;
-    --muted: #7a6e62;
-    --border: #d6cdbf;
-    --lunch-bg: #fff8ef;
-    --lunch-border: #e8a84c;
-    --dinner-bg: #f2eef8;
-    --dinner-border: #8b6bbf;
-    --hotel-bg: #eef4f0;
-    --hotel-border: #4a8c5c;
+    --ink: #1a1410; --paper: #faf7f2; --cream: #f2ece0; --red: #c94040;
+    --gold: #b8862a; --muted: #7a6e62; --border: #d6cdbf;
+    --lunch-bg: #fff8ef; --lunch-border: #e8a84c;
+    --dinner-bg: #f2eef8; --dinner-border: #8b6bbf;
+    --hotel-bg: #eef4f0; --hotel-border: #4a8c5c;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; overflow: hidden; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    display: flex;
-    flex-direction: column;
-  }
-  .site-header {
-    flex: 0 0 auto;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 48px 24px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .site-header::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 80px);
-  }
+  body { background: var(--paper); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.7; display: flex; flex-direction: column; }
+  .site-header { flex: 0 0 auto; background: var(--ink); color: var(--paper); padding: 48px 24px 40px; text-align: center; position: relative; overflow: hidden; }
+  .site-header::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 80px); }
   .trip-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: 0.04em; position: relative; }
   .trip-sub { font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,243,236,0.55); margin-top: 8px; position: relative; }
   .trip-dates { display: inline-block; margin-top: 16px; background: var(--red); color: #fff; font-size: 0.8rem; letter-spacing: 0.15em; padding: 6px 20px; border-radius: 2px; position: relative; }
@@ -118,7 +90,7 @@
   .ticket-link-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; color: var(--red); text-decoration: none; border: 1px solid rgba(201,64,64,0.3); border-radius: 2px; padding: 3px 8px; transition: all 0.2s; white-space: nowrap; flex: 0 0 auto; }
   .ticket-link-btn:hover { background: var(--red); color: #fff; }
   .person-row { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
-  .person-chip { font-size: 0.7rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 12px; background: var(--cream); color: var(--muted); cursor: pointer; transition: all 0.2s; }
+  .person-chip { font-size: 0.7rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 12px; background: var(--cream); color: var(--muted); cursor: pointer; transition: all 0.2s; user-select: none; }
   .person-chip.checked { background: #4a8c5c; border-color: #4a8c5c; color: #fff; }
   @media (max-width: 600px) {
     .timeline::before { left: 56px; }
@@ -193,37 +165,11 @@
       </div>
     </div>
     <div class="timeline">
-      <div class="tl-item has-event">
-        <div class="tl-time">12:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="event-title">🛬 關西機場集合</div>
-          <div class="transport-row"><div class="transport-icon">🚄</div><div class="transport-text">Haruka Line 關西機場 → 京都站<br><a href="https://www.colatour.com.tw/C10T_Ticket/C10T02_Feature.aspx?ItemNo=11536" target="_blank">JR關西周遊券四日</a>，每小時 14/44 分各一班｜14:34 或 15:04 到京都</div></div>
-        </div>
-      </div>
-      <div class="tl-item has-event">
-        <div class="tl-time">15:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="event-title">🏠 Check in — 京都 Raina &amp; Jelly <a class="map-link" href="https://maps.app.goo.gl/8XR1o3P64nLZ2cev8" target="_blank">📍 地圖</a></div>
-          <div class="transport-row"><div class="transport-icon">🚃</div><div class="transport-text">JR京都站 🔄 山陰本線 ➡️ 丹波口站</div></div>
-        </div>
-      </div>
-      <div class="tl-item has-event">
-        <div class="tl-time">16:00</div><div class="tl-dot"></div>
-        <div class="tl-content"><div class="event-title">🏮 錦市場</div></div>
-      </div>
-      <div class="tl-item has-event is-meal">
-        <div class="tl-time">18:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="meal-card dinner"><div class="meal-label">🌙 晚餐</div><div class="meal-content">TeamLab 附近餐廳</div><div class="meal-budget">人均預算約 1,000 台幣</div></div>
-        </div>
-      </div>
-      <div class="tl-item has-event">
-        <div class="tl-time">19:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="event-title">🎨 TeamLab Kyoto <a class="map-link" href="https://maps.app.goo.gl/SoTfVriJ8MozjLHS6" target="_blank">📍 地圖</a></div>
-          <div class="event-note">票券：<a href="https://www.teamlab.art/zh-hant/e/kyoto/" target="_blank">日本官方售票網</a></div>
-        </div>
-      </div>
+      <div class="tl-item has-event"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🛬 關西機場集合</div><div class="transport-row"><div class="transport-icon">🚄</div><div class="transport-text">Haruka Line 關西機場 → 京都站<br><a href="https://www.colatour.com.tw/C10T_Ticket/C10T02_Feature.aspx?ItemNo=11536" target="_blank">JR關西周遊券四日</a>，每小時 14/44 分各一班｜14:34 或 15:04 到京都</div></div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🏠 Check in — 京都 Raina &amp; Jelly <a class="map-link" href="https://maps.app.goo.gl/8XR1o3P64nLZ2cev8" target="_blank">📍 地圖</a></div><div class="transport-row"><div class="transport-icon">🚃</div><div class="transport-text">JR京都站 🔄 山陰本線 ➡️ 丹波口站</div></div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">16:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🏮 錦市場</div></div></div>
+      <div class="tl-item has-event is-meal"><div class="tl-time">18:00</div><div class="tl-dot"></div><div class="tl-content"><div class="meal-card dinner"><div class="meal-label">🌙 晚餐</div><div class="meal-content">TeamLab 附近餐廳</div><div class="meal-budget">人均預算約 1,000 台幣</div></div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">19:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🎨 TeamLab Kyoto <a class="map-link" href="https://maps.app.goo.gl/SoTfVriJ8MozjLHS6" target="_blank">📍 地圖</a></div><div class="event-note">票券：<a href="https://www.teamlab.art/zh-hant/e/kyoto/" target="_blank">日本官方售票網</a></div></div></div>
     </div>
     <div class="notes-box"><h3>🗒 備註</h3><p>京都逛街可在烏丸站（寶中）、四條、五條附近，或花見小路、二三年阪方向。</p></div>
   </div>
@@ -247,41 +193,12 @@
     <div class="timeline">
       <div class="tl-item has-event"><div class="tl-time">08:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🍳 早餐</div></div></div>
       <div class="tl-item has-event"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-content"><div class="transport-row"><div class="transport-icon">🚕</div><div class="transport-text">搭計程車前往清水寺，約 15 分鐘</div></div></div></div>
-      <div class="tl-item has-event">
-        <div class="tl-time">10:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="event-title">⛩ 清水寺 · 二年坂 · 三年坂 <a class="map-link" href="https://maps.app.goo.gl/XPqAJV2s9Jn57WHX6" target="_blank">📍 地圖</a></div>
-          <div class="event-note">門票 500 日圓</div>
-        </div>
-      </div>
+      <div class="tl-item has-event"><div class="tl-time">10:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">⛩ 清水寺 · 二年坂 · 三年坂 <a class="map-link" href="https://maps.app.goo.gl/XPqAJV2s9Jn57WHX6" target="_blank">📍 地圖</a></div><div class="event-note">門票 500 日圓</div></div></div>
       <div class="tl-item has-event is-meal"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-content"><div class="meal-card lunch"><div class="meal-label">☀ 午餐</div><div class="meal-content meal-empty">清水寺附近，待補充</div><div class="meal-budget">人均預算約 500 台幣</div></div></div></div>
-      <div class="tl-item has-event">
-        <div class="tl-time">13:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="event-title">🌸 宇治 · 平等院 <a class="map-link" href="https://maps.app.goo.gl/uDmPSFR22h6k8UTm9" target="_blank">📍 地圖</a></div>
-          <div class="transport-row"><div class="transport-icon">🚃</div><div class="transport-text">關西電鐵清水五條 ➡️ 東福寺 🔄 JR奈良線 ➡️ 宇治站</div></div>
-        </div>
-      </div>
-      <div class="tl-item has-event">
-        <div class="tl-time">14:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="event-title">🏛 平等院鳳凰堂 <a class="map-link" href="https://maps.app.goo.gl/WMYNo4QBdqw6RFNV7" target="_blank">📍 地圖</a></div>
-          <div class="event-note">門票 700 日圓｜鳳凰堂開放至 16:00（限制入館人數）&#10;<a href="https://www.byodoin.or.jp/ch2/guide/" target="_blank">官方網站</a></div>
-        </div>
-      </div>
-      <div class="tl-item has-event">
-        <div class="tl-time">15:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="event-title">🌿 宇治其他景點</div>
-          <div class="event-note">• 宇治上神社（日本現存最古老神社）&#10;• 中村藤吉（建議先抽號碼牌）&#10;• 橘島、塔之島</div>
-        </div>
-      </div>
-      <div class="tl-item has-event is-meal">
-        <div class="tl-time">19:30</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="meal-card dinner"><div class="meal-label">🌙 晚餐</div><div class="meal-content">壽喜燒松葉蟹・帝王蟹吃到飽 三條河原町店 <a class="map-link" href="https://maps.app.goo.gl/YUgh91DX3iKYAY8NA" target="_blank">📍</a></div><div class="meal-budget">16,000 日圓（約 3,500 台幣，不含稅）</div></div>
-        </div>
-      </div>
+      <div class="tl-item has-event"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🌸 宇治 · 平等院 <a class="map-link" href="https://maps.app.goo.gl/uDmPSFR22h6k8UTm9" target="_blank">📍 地圖</a></div><div class="transport-row"><div class="transport-icon">🚃</div><div class="transport-text">關西電鐵清水五條 ➡️ 東福寺 🔄 JR奈良線 ➡️ 宇治站</div></div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">14:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🏛 平等院鳳凰堂 <a class="map-link" href="https://maps.app.goo.gl/WMYNo4QBdqw6RFNV7" target="_blank">📍 地圖</a></div><div class="event-note">門票 700 日圓｜鳳凰堂開放至 16:00（限制入館人數）&#10;<a href="https://www.byodoin.or.jp/ch2/guide/" target="_blank">官方網站</a></div></div></div>
+      <div class="tl-item has-event"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🌿 宇治其他景點</div><div class="event-note">• 宇治上神社（日本現存最古老神社）&#10;• 中村藤吉（建議先抽號碼牌）&#10;• 橘島、塔之島</div></div></div>
+      <div class="tl-item has-event is-meal"><div class="tl-time">19:30</div><div class="tl-dot"></div><div class="tl-content"><div class="meal-card dinner"><div class="meal-label">🌙 晚餐</div><div class="meal-content">壽喜燒松葉蟹・帝王蟹吃到飽 三條河原町店 <a class="map-link" href="https://maps.app.goo.gl/YUgh91DX3iKYAY8NA" target="_blank">📍</a></div><div class="meal-budget">16,000 日圓（約 3,500 台幣，不含稅）</div></div></div></div>
     </div>
   </div>
 </div>
@@ -303,14 +220,7 @@
     </div>
     <div class="timeline">
       <div class="tl-item has-event"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🧳 寄行李 / Check Out</div><div class="event-note">寄行李最早時段為 09:00–09:30</div></div></div>
-      <div class="tl-item has-event">
-        <div class="tl-time">10:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="event-title">🚄 車程 — 京都 → 大阪</div>
-          <div class="transport-row"><div class="transport-icon">🚄</div><div class="transport-text">JR京都站 🔄 <a href="https://www.westjr.co.jp/global/en/timetable/pdf/haruka_timetable_2024.pdf" target="_blank">Haruka</a> ➡️ 大阪站｜約 30–50 分鐘</div></div>
-          <div class="transport-row"><div class="transport-icon">📍</div><div class="transport-text"><a href="https://maps.app.goo.gl/J3GEFuLf27vu3UZ69" target="_blank">大阪車站地圖</a></div></div>
-        </div>
-      </div>
+      <div class="tl-item has-event"><div class="tl-time">10:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🚄 車程 — 京都 → 大阪</div><div class="transport-row"><div class="transport-icon">🚄</div><div class="transport-text">JR京都站 🔄 <a href="https://www.westjr.co.jp/global/en/timetable/pdf/haruka_timetable_2024.pdf" target="_blank">Haruka</a> ➡️ 大阪站｜約 30–50 分鐘</div></div><div class="transport-row"><div class="transport-icon">📍</div><div class="transport-text"><a href="https://maps.app.goo.gl/J3GEFuLf27vu3UZ69" target="_blank">大阪車站地圖</a></div></div></div></div>
       <div class="tl-item has-event is-meal"><div class="tl-time">11:00</div><div class="tl-dot"></div><div class="tl-content"><div class="meal-card lunch"><div class="meal-label">☀ 午餐</div><div class="meal-content meal-empty">待補充</div><div class="meal-budget">人均預算 500 台幣內</div></div></div></div>
       <div class="tl-item has-event"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🛍 梅田逛街</div><div class="event-note">請各自做功課，可分開逛</div></div></div>
       <div class="tl-item has-event"><div class="tl-time">16:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🚶 車程 → 難波 <a class="map-link" href="https://maps.app.goo.gl/g1DLBFGbePk1fkC77" target="_blank">📍 地圖</a></div><div class="event-note">16:30 集合（地點待定）｜預計 17:00 到難波站</div></div></div>
@@ -340,14 +250,7 @@
     <div class="timeline">
       <div class="tl-item has-event"><div class="tl-time">07:30</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🌅 早餐從簡，出發</div></div></div>
       <div class="tl-item has-event"><div class="tl-time">08:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🚄 車程 → 姬路</div><div class="transport-row"><div class="transport-icon">🚃</div><div class="transport-text">JR山陽本線 下行 新快速（米原方向）經姬路</div></div></div></div>
-      <div class="tl-item has-event">
-        <div class="tl-time">09:00</div><div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="event-title">🏯 姬路城 <a class="map-link" href="https://maps.app.goo.gl/pVvqRhse6WrLTxH87" target="_blank">📍 地圖</a></div>
-          <div class="event-note">開園：09:00｜門票：2,500 日圓｜預計遊覽 1.5–2 小時&#10;<a href="https://www.himejicastle.jp/cn_han/" target="_blank">姬路城官網</a></div>
-          <div class="transport-row"><div class="transport-icon">🚌</div><div class="transport-text">姫路站北口搭神姫公車至「大手門前」下車步行 5 分鐘，或從車站步行 20 分鐘</div></div>
-        </div>
-      </div>
+      <div class="tl-item has-event"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🏯 姬路城 <a class="map-link" href="https://maps.app.goo.gl/pVvqRhse6WrLTxH87" target="_blank">📍 地圖</a></div><div class="event-note">開園：09:00｜門票：2,500 日圓｜預計遊覽 1.5–2 小時&#10;<a href="https://www.himejicastle.jp/cn_han/" target="_blank">姬路城官網</a></div><div class="transport-row"><div class="transport-icon">🚌</div><div class="transport-text">姫路站北口搭神姫公車至「大手門前」下車步行 5 分鐘，或從車站步行 20 分鐘</div></div></div></div>
       <div class="tl-item has-event is-meal"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-content"><div class="meal-card lunch"><div class="meal-label">☀ 午餐</div><div class="meal-content meal-empty">待補充</div><div class="meal-budget">人均預算 500 台幣內</div></div></div></div>
       <div class="tl-item has-event"><div class="tl-time">14:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">🚄 車程 → 神戶三宮 <a class="map-link" href="https://maps.app.goo.gl/pUYceo5S6JZz4Buz6" target="_blank">📍 地圖</a></div><div class="transport-row"><div class="transport-icon">🚃</div><div class="transport-text">JR東海道・山陽本線 ➡️ 三宮站</div></div></div></div>
       <div class="tl-item has-event"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-content"><div class="event-title">⚓ 神戶閒晃</div><div class="event-note">🗺 <a href="https://www.feel-kobe.jp/tw/brochures" target="_blank">神戶官方觀光手冊（繁體中文）</a></div></div></div>
@@ -403,7 +306,7 @@
     <div class="day-header">
       <div class="day-label">Tickets &amp; Services · 票券與服務</div>
       <div class="day-title">票券購買 · 服務預約</div>
-      <div class="day-highlight" style="margin-top:8px; font-size:0.78rem; color:var(--muted);">點擊名字標記個人完成 ✅</div>
+      <div class="day-highlight" style="margin-top:8px; font-size:0.78rem; color:var(--muted);">點擊名字標記個人完成 ✅（即時同步）</div>
     </div>
     <div class="tickets-section">
       <div class="tickets-section-title">🎫 票券相關</div>
@@ -440,6 +343,43 @@
 
 </div>
 
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDUyGUYTEt9kYckS8okWQBs_jOygCHpDE8",
+    authDomain: "japantrip-56ffe.firebaseapp.com",
+    databaseURL: "https://japantrip-56ffe-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "japantrip-56ffe",
+    storageBucket: "japantrip-56ffe.firebasestorage.app",
+    messagingSenderId: "692274409204",
+    appId: "1:692274409204:web:1ba31a39e40be7e64078a1"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const stateRef = ref(db, 'ticketState');
+
+  // 即時監聽，所有裝置自動同步
+  onValue(stateRef, (snapshot) => {
+    const data = snapshot.val() || {};
+    document.querySelectorAll('.person-chip[data-key]').forEach(c => {
+      c.classList.toggle('checked', !!data[c.dataset.key]);
+    });
+  });
+
+  // 點擊名字寫入 Firebase
+  window.togglePerson = async function(el) {
+    const key = el.dataset.key;
+    const snapshot = await get(stateRef);
+    const data = snapshot.val() || {};
+    data[key] = !data[key];
+    await set(stateRef, data);
+  };
+</script>
+
 <script>
   const pages = ['flight','day1','day2','day3','day4','day5','day6','tickets'];
   let currentIndex = 0;
@@ -470,22 +410,6 @@
       }
     }, 80);
   }, { passive: true });
-
-  function togglePerson(el) {
-    el.classList.toggle('checked');
-    const state = {};
-    document.querySelectorAll('.person-chip[data-key]').forEach(c => {
-      state[c.dataset.key] = c.classList.contains('checked');
-    });
-    try { localStorage.setItem('personState2', JSON.stringify(state)); } catch(e){}
-  }
-
-  try {
-    const ps = JSON.parse(localStorage.getItem('personState2') || '{}');
-    document.querySelectorAll('.person-chip[data-key]').forEach(c => {
-      if(ps[c.dataset.key]) c.classList.add('checked');
-    });
-  } catch(e){}
 </script>
 </body>
 </html>
